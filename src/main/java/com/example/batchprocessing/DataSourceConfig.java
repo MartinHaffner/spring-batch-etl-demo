@@ -1,6 +1,7 @@
 package com.example.batchprocessing;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,26 +15,20 @@ public class DataSourceConfig {
 
     @Bean
     @Qualifier("controlDB")
+    @ConfigurationProperties(prefix="spring.control-db")
     @Primary
     public DataSource getBatchDBDataSource() {
         return DataSourceBuilder
                 .create()
-                .driverClassName("org.h2.Driver")
-                .url("jdbc:h2:mem:testdb")
-                .username("sa")
-                .password("")
                 .build();
     }
 
     @Bean
     @Qualifier("sourceDB")
+    @ConfigurationProperties(prefix="spring.source-db")
     public DataSource getSourceDBDataSource() {
         return DataSourceBuilder
                 .create()
-                .driverClassName("org.mariadb.jdbc.Driver")
-                .url("jdbc:mysql://localhost/source_db")
-                .username("source_user")
-                .password("")
                 .build();
     }
 
@@ -45,13 +40,10 @@ public class DataSourceConfig {
 
     @Bean
     @Qualifier("targetDB")
+    @ConfigurationProperties(prefix="spring.target-db")
     public DataSource getTargetDBDataSource() {
         return DataSourceBuilder
                 .create()
-                .driverClassName("org.mariadb.jdbc.Driver")
-                .url("jdbc:mysql://localhost/target_db")
-                .username("target_user")
-                .password("")
                 .build();
     }
 
