@@ -1,0 +1,13 @@
+spring:
+  source-db:
+    username: source_user
+    password: 123qwe
+    table: people
+    driverClassName: org.mariadb.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost/source_db
+  target-db:
+    username: target_user
+    password: 123qwe
+    table: people
+    driverClassName: org.mariadb.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost/target_db

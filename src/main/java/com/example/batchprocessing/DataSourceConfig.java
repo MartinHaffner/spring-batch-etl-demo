@@ -15,11 +15,14 @@ public class DataSourceConfig {
 
     @Bean
     @Qualifier("controlDB")
-    @ConfigurationProperties(prefix="spring.control-db")
     @Primary
     public DataSource getBatchDBDataSource() {
         return DataSourceBuilder
                 .create()
+                .driverClassName("org.h2.Driver")
+                .url("jdbc:h2:mem:controldb")
+                .username("sa")
+                .password("")
                 .build();
     }
 
